@@ -42,20 +42,20 @@ Requires:       electronics-menu
 Requires:       freerouting
 
 %description
-Kicad is an EDA software to design electronic schematic
+KiCad is an EDA software to design electronic schematic
 diagrams and printed circuit board artwork up to 16 layers.
-Kicad is a set of four softwares and a project manager:
-- Kicad: project manager
+KiCad is a set of four softwares and a project manager:
+- KiCad: project manager
 - Eeschema: schematic entry
 - Pcbnew: board editor
 - Cvpcb: footprint selector for components used in the circuit design
 - Gerbview: GERBER viewer (photoplotter documents)
 
 %description -l fr
-Kicad est un logiciel open source (GPL) pour la création de schémas
+KiCad est un logiciel open source (GPL) pour la création de schémas
 électroniques et le tracé de circuits imprimés jusqu'à 16 couches.
-Kicad est un ensemble de quatres logiciels et un gestionnaire de projet :
-- Kicad : gestionnaire de projet.
+KiCad est un ensemble de quatres logiciels et un gestionnaire de projet :
+- KiCad : gestionnaire de projet.
 - Eeschema : saisie de schémas
 - Pcbnew : éditeur de circuits imprimés
 - Cvpcb : sélecteur d'empreintes pour les composants utilisés dans le circuit
@@ -63,123 +63,123 @@ Kicad est un ensemble de quatres logiciels et un gestionnaire de projet :
 
 
 %package        doc
-Summary:        Documentations for kicad
-Summary(fr):    Documentations pour kicad en anglais
+Summary:        Documentation for KiCad
+Summary(fr):    Documentations pour KiCad en anglais
 Group:          Documentation
 License:        GPLv2+
 BuildArch:      noarch
 
 %description    doc
-Documentations and tutorials for kicad in English
+Documentation and tutorials for KiCad in English.
 
 
 %package        doc-de
-Summary:        Documentation for Kicad in German
-Summary(fr):    Documentations pour kicad en allemand
+Summary:        Documentation for KiCad in German
+Summary(fr):    Documentations pour KiCad en allemand
 Group:          Documentation
 Requires:       %{name}-doc = %{version}-%{release}
 BuildArch:      noarch
 
 %description    doc-de
-Documentation and tutorials for Kicad in German
+Documentation and tutorials for KiCad in German
 
 
 %package        doc-es
-Summary:        Documentation for Kicad in Spanish
-Summary(fr):    Documentations pour kicad en espagnol
+Summary:        Documentation for KiCad in Spanish
+Summary(fr):    Documentations pour KiCad en espagnol
 Group:          Documentation
 Requires:       %{name}-doc = %{version}-%{release}
 BuildArch:      noarch
 
 %description    doc-es
-Documentation and tutorials for Kicad in Spanish
+Documentation and tutorials for KiCad in Spanish
 
 
 %package        doc-fr
-Summary:        Documentation for Kicad in French
-Summary(fr):    Documentations pour kicad en français
+Summary:        Documentation for KiCad in French
+Summary(fr):    Documentations pour KiCad en français
 Group:          Documentation
 Requires:       %{name}-doc = %{version}-%{release}
 BuildArch:      noarch
 
 %description    doc-fr
-Documentation and tutorials for Kicad in French
+Documentation and tutorials for KiCad in French
 
 
 %package        doc-hu
-Summary:        Documentation for Kicad in Hungarian
-Summary(fr):    Documentations pour kicad en hongrois
+Summary:        Documentation for KiCad in Hungarian
+Summary(fr):    Documentations pour KiCad en hongrois
 Group:          Documentation
 Requires:       %{name}-doc = %{version}-%{release}
 BuildArch:      noarch
 
 %description    doc-hu
-Documentation and tutorials for Kicad in Hungarian
+Documentation and tutorials for KiCad in Hungarian
 
 
 %package        doc-it
-Summary:        Documentation for Kicad in Italian
-Summary(fr):    Documentations pour kicad en italien
+Summary:        Documentation for KiCad in Italian
+Summary(fr):    Documentations pour KiCad en italien
 Group:          Documentation
 Requires:       %{name}-doc = %{version}-%{release}
 BuildArch:      noarch
 
 %description    doc-it
-Documentation and tutorials for Kicad in Italian
+Documentation and tutorials for KiCad in Italian
 
 
 %package        doc-ja
-Summary:        Documentation for Kicad in Japanese
-Summary(fr):    Documentations pour kicad en japonais
+Summary:        Documentation for KiCad in Japanese
+Summary(fr):    Documentations pour KiCad en japonais
 Group:          Documentation
 Requires:       %{name}-doc = %{version}-%{release}
 BuildArch:      noarch
 %description    doc-ja
-Documentation and tutorials for Kicad in Japanese
+Documentation and tutorials for KiCad in Japanese
 
 
 %package        doc-pl
-Summary:        Documentation for Kicad in Polish
-Summary(fr):    Documentations pour kicad en polonais
+Summary:        Documentation for KiCad in Polish
+Summary(fr):    Documentations pour KiCad en polonais
 Group:          Documentation
 Requires:       %{name}-doc = %{version}-%{release}
 BuildArch:      noarch
 
 %description    doc-pl
-Documentation and tutorials for Kicad in Polish
+Documentation and tutorials for KiCad in Polish
 
 
 %package        doc-pt
-Summary:        Documentation for Kicad in Portuguese
-Summary(fr):    Documentations pour kicad en portugais
+Summary:        Documentation for KiCad in Portuguese
+Summary(fr):    Documentations pour KiCad en portugais
 Group:          Documentation
 Requires:       %{name}-doc = %{version}-%{release}
 BuildArch:      noarch
 
 %description    doc-pt
-Documentation and tutorials for Kicad in Portuguese
+Documentation and tutorials for KiCad in Portuguese
 
 
 %package        doc-ru
-Summary:        Documentation for Kicad in Russian
-Summary(fr):    Documentations pour kicad en russe
+Summary:        Documentation for KiCad in Russian
+Summary(fr):    Documentations pour KiCad en russe
 Group:          Documentation
 Requires:       %{name}-doc = %{version}-%{release}
 BuildArch:      noarch
 
 %description    doc-ru
-Documentation and tutorials for Kicad in Russian
+Documentation and tutorials for KiCad in Russian
 
 
 %package        doc-zh_CN
-Summary:        Documentation for Kicad in Chinese
-Summary(fr):    Documentations pour kicad en chinois
+Summary:        Documentation for KiCad in Chinese
+Summary(fr):    Documentations pour KiCad en chinois
 Group:          Documentation
 Requires:       %{name}-doc = %{version}-%{release}
 BuildArch:      noarch
 
 %description    doc-zh_CN
-Documentation and tutorials for Kicad in Chinese
+Documentation and tutorials for KiCad in Chinese
 
 
 %prep
