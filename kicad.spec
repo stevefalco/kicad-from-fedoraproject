@@ -1,7 +1,7 @@
 Name:           kicad
-Version:        2014.03.13
-Release:        11.rev4744%{?dist}
-Summary:        Electronic schematic diagrams and printed circuit board artwork
+Version:        2015.02.05
+Release:        1.rev5404%{?dist}
+Summary:        EDA software suite for creation of schematic diagrams and PCBs
 Summary(fr):    Saisie de schéma électronique et routage de circuit imprimé
 
 Group:          Applications/Engineering
@@ -25,18 +25,16 @@ Source3:        %{name}-footprints-%{version}.tar.xz
 Source7:        Epcos-MKT-1.0.tar.bz2
 Source8:        %{name}-walter-libraries-%{version}.tar.xz
 
-Patch0:         pcb_calculator-desktop-fix.patch
-Patch1:         kicad-2014.03.13-nostrip.patch
-Patch2:         kicad-2014.03.13-fp-lib.patch
-Patch3:         kicad-2014.03.13-freerouting.patch
-Patch4:         kicad-2014.03.13-boost-context.patch
+Patch1:         kicad-2015.01.02-nostrip.patch
+Patch2:         kicad-2015.01.02-freerouting.patch
 
 BuildRequires:  desktop-file-utils
-BuildRequires:  wxGTK-devel
+BuildRequires:  wxGTK3-devel
 BuildRequires:  boost-devel
 BuildRequires:  cmake
 BuildRequires:  doxygen
 BuildRequires:  glew-devel
+BuildRequires:  openssl-devel
 
 Requires:       electronics-menu
 Requires:       freerouting
@@ -185,14 +183,8 @@ Documentation and tutorials for KiCad in Chinese
 %prep
 %setup -q -a 1 -a 2 -a 3 -a 7 -a 8
 
-%patch0 -p1
 %patch1 -p1
-%patch3 -p1
-%patch4 -p0
-
-cd %{name}-libraries-%{version}
 %patch2 -p1
-cd ..
 
 #kicad-doc.noarch: W: file-not-utf8 /usr/share/doc/kicad/AUTHORS.txt
 iconv -f iso8859-1 -t utf-8 AUTHORS.txt > AUTHORS.conv && mv -f AUTHORS.conv AUTHORS.txt
@@ -231,7 +223,8 @@ popd
 #
 # Core components
 #
-%cmake -DKICAD_STABLE_VERSION=OFF -DKICAD_SKIP_BOOST=ON
+%cmake -DKICAD_STABLE_VERSION=OFF -DKICAD_SKIP_BOOST=ON \
+        -DwxWidgets_CONFIG_EXECUTABLE=%{_bindir}/wx-config-3.0
 %{__make} -j1 VERBOSE=1
 
 
@@ -283,10 +276,6 @@ ln -f %{buildroot}%{_datadir}/%{name}/template/fp-lib-table{.for-pretty,}
 
 %{__cp} -pr %{name}-doc-%{version}/doc/* %{buildroot}%{_docdir}/%{name}
 %{__cp} -pr AUTHORS.txt CHANGELOG* %{buildroot}%{_docdir}/%{name}
-
-# Drop this, it's no longer able to webstart the freerouter
-# and we have it available locally anyway
-rm %{buildroot}%{_bindir}/*.jnlp
 
 %find_lang %{name}
 
@@ -375,6 +364,9 @@ update-mime-database %{?fedora:-n} %{_datadir}/mime &> /dev/null || :
 
 
 %changelog
+* Thu Mar 19 2015 Lubomir Rintel <lkundrak@v3.sk> - 2015.02.05-1.rev5404
+- Update to a later snapshot
+
 * Tue Jan 27 2015 Petr Machata <pmachata@redhat.com> - 2014.03.13-11.rev4744
 - Rebuild for boost 1.57.0
 - Add upstream patch to support new Boost.Context API

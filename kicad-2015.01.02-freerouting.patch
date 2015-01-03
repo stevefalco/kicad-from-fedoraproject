@@ -1,0 +1,52 @@
+From f81cb9527e29c6a6ef21d9040162b42e31c40e44 Mon Sep 17 00:00:00 2001
+From: Lubomir Rintel <lkundrak@v3.sk>
+Date: Wed, 24 Dec 2014 09:53:49 +0100
+Subject: [PATCH] Try to run freerouting by its JPackage launcher script
+
+It's a sin to touch the Java tool by its JAR file in Fedora.
+---
+ pcbnew/dialogs/dialog_freeroute_exchange.cpp | 24 ++++++++++++++++++++++--
+ 1 file changed, 22 insertions(+), 2 deletions(-)
+
+diff -urp kicad-2015.01.02/pcbnew/dialogs/dialog_freeroute_exchange.cpp kicad-2015.01.02.good/pcbnew/dialogs/dialog_freeroute_exchange.cpp
+--- kicad-2015.01.02/pcbnew/dialogs/dialog_freeroute_exchange.cpp	2015-01-02 22:15:35.000000000 +0100
++++ kicad-2015.01.02.good/pcbnew/dialogs/dialog_freeroute_exchange.cpp	2015-01-03 11:25:55.393054653 +0100
+@@ -80,7 +80,12 @@ void DIALOG_FREEROUTE::MyInit()
+     wxConfigBase* cfg = Kiface().KifaceSettings();
+     cfg->Read( FREEROUTE_RUN_KEY, &msg );
+ */
+-    wxFileName fileName( FindKicadFile( wxT( "freeroute.jar" ) ), wxPATH_UNIX );
++    wxFileName fileName( FindKicadFile( wxT( "freeroute" ) ), wxPATH_UNIX );
++
++    if( !fileName.FileExists() )
++    {
++        fileName.Assign ( FindKicadFile( wxT( "freeroute.jar" ) ), wxPATH_UNIX );
++    }
+ 
+     if( fileName.FileExists() )
+     {
+@@ -144,8 +149,22 @@ void DIALOG_FREEROUTE::OnLaunchButtonCli
+             return;
+     }
+ 
+-    wxFileName jarfileName( FindKicadFile( wxT( "freeroute.jar" ) ), wxPATH_UNIX );
+-    wxString command;
++    wxFileName jarfileName( FindKicadFile( wxT( "freerouting" ) ), wxPATH_UNIX );
++    wxString command = wxT( "" );
++
++    if( jarfileName.FileExists() )
++    {
++        command << wxChar( '"' ) << jarfileName.GetFullPath() << wxChar( '"' );
++        // add option to load the .dsn file
++        command << wxT( " -de " );
++        // add *.dsn full filename (quoted):
++        command << wxChar( '"' ) << dsnFile << wxChar( '"' );
++
++        ProcessExecute( command );
++        return;
++    } else {
++        jarfileName.Assign ( FindKicadFile( wxT( "freeroute.jar" ) ), wxPATH_UNIX );
++    }
+ 
+     // Find the Java application on Windows.
+     // Colud be no more needed since we now have to run only java, not java web start

@@ -1,5 +1,5 @@
 #!/bin/sh
-TIMESTAMP="2014.03.13"
+TIMESTAMP="2015.02.05"
 
 mkdir -p kicad-walter
 cd kicad-walter
