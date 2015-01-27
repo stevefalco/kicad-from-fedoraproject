@@ -1,6 +1,6 @@
 Name:           kicad
 Version:        2014.03.13
-Release:        10.rev4744%{?dist}
+Release:        11.rev4744%{?dist}
 Summary:        Electronic schematic diagrams and printed circuit board artwork
 Summary(fr):    Saisie de schéma électronique et routage de circuit imprimé
 
@@ -373,6 +373,9 @@ update-mime-database %{?fedora:-n} %{_datadir}/mime &> /dev/null || :
 
 
 %changelog
+* Tue Jan 27 2015 Petr Machata <pmachata@redhat.com> - 2014.03.13-11.rev4744
+- Rebuild for boost 1.57.0
+
 * Fri Jan 02 2015 Lubomir Rintel <lkundrak@v3.sk> - 2014.03.13-10.rev4744
 - Use local autorouter
 
