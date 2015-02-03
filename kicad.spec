@@ -29,6 +29,7 @@ Patch0:         pcb_calculator-desktop-fix.patch
 Patch1:         kicad-2014.03.13-nostrip.patch
 Patch2:         kicad-2014.03.13-fp-lib.patch
 Patch3:         kicad-2014.03.13-freerouting.patch
+Patch4:         kicad-2014.03.13-boost-context.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  wxGTK-devel
@@ -187,6 +188,7 @@ Documentation and tutorials for Kicad in Chinese
 %patch0 -p1
 %patch1 -p1
 %patch3 -p1
+%patch4 -p0
 
 cd %{name}-libraries-%{version}
 %patch2 -p1
@@ -375,6 +377,8 @@ update-mime-database %{?fedora:-n} %{_datadir}/mime &> /dev/null || :
 %changelog
 * Tue Jan 27 2015 Petr Machata <pmachata@redhat.com> - 2014.03.13-11.rev4744
 - Rebuild for boost 1.57.0
+- Add upstream patch to support new Boost.Context API
+  (kicad-2014.03.13-boost-context.patch)
 
 * Fri Jan 02 2015 Lubomir Rintel <lkundrak@v3.sk> - 2014.03.13-10.rev4744
 - Use local autorouter
