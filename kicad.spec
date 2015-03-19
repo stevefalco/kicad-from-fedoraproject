@@ -29,7 +29,7 @@ Patch1:         kicad-2015.01.02-nostrip.patch
 Patch2:         kicad-2015.01.02-freerouting.patch
 
 BuildRequires:  desktop-file-utils
-BuildRequires:  wxGTK3-devel
+BuildRequires:  compat-wxGTK3-gtk2-devel
 BuildRequires:  boost-devel
 BuildRequires:  cmake
 BuildRequires:  doxygen
@@ -224,7 +224,7 @@ popd
 # Core components
 #
 %cmake -DKICAD_STABLE_VERSION=OFF -DKICAD_SKIP_BOOST=ON \
-        -DwxWidgets_CONFIG_EXECUTABLE=%{_bindir}/wx-config-3.0
+        -DwxWidgets_CONFIG_EXECUTABLE=%{_bindir}/wx-config-3.0-gtk2
 %{__make} -j1 VERBOSE=1
 
 
