@@ -225,7 +225,7 @@ popd
 #
 %cmake -DKICAD_STABLE_VERSION=OFF -DKICAD_SKIP_BOOST=ON \
         -DwxWidgets_CONFIG_EXECUTABLE=%{_bindir}/wx-config-3.0-gtk2
-%{__make} -j1 VERBOSE=1
+%{__make} %{_smp_mflags} VERBOSE=1
 
 
 %install
