@@ -16,7 +16,7 @@ diff -urp kicad-2015.01.02/pcbnew/dialogs/dialog_freeroute_exchange.cpp kicad-20
      cfg->Read( FREEROUTE_RUN_KEY, &msg );
  */
 -    wxFileName fileName( FindKicadFile( wxT( "freeroute.jar" ) ), wxPATH_UNIX );
-+    wxFileName fileName( FindKicadFile( wxT( "freeroute" ) ), wxPATH_UNIX );
++    wxFileName fileName( FindKicadFile( wxT( "freerouting" ) ), wxPATH_UNIX );
 +
 +    if( !fileName.FileExists() )
 +    {
