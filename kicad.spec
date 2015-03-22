@@ -1,6 +1,6 @@
 Name:           kicad
-Version:        2015.02.05
-Release:        1.rev5404%{?dist}
+Version:        2015.03.21
+Release:        1.rev5528%{?dist}
 Summary:        EDA software suite for creation of schematic diagrams and PCBs
 Summary(fr):    Saisie de schéma électronique et routage de circuit imprimé
 
@@ -364,6 +364,11 @@ update-mime-database %{?fedora:-n} %{_datadir}/mime &> /dev/null || :
 
 
 %changelog
+* Sun Mar 22 2015 Lubomir Rintel <lkundrak@v3.sk> - 2015.03.21-1.rev5528
+- Update to a later snapshot
+- Fix the freerouter patch
+- Enable parallel build
+
 * Thu Mar 19 2015 Lubomir Rintel <lkundrak@v3.sk> - 2015.02.05-1.rev5404
 - Update to a later snapshot
 
