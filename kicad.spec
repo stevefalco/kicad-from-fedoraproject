@@ -1,6 +1,6 @@
 Name:           kicad
 Version:        2015.03.21
-Release:        1.rev5528%{?dist}
+Release:        2.rev5528%{?dist}
 Summary:        EDA software suite for creation of schematic diagrams and PCBs
 Summary(fr):    Saisie de schéma électronique et routage de circuit imprimé
 
@@ -191,7 +191,7 @@ iconv -f iso8859-1 -t utf-8 AUTHORS.txt > AUTHORS.conv && mv -f AUTHORS.conv AUT
 
 
 #multilibs
-%ifarch x86_64 sparc64 ppc64 amd64 s390x
+%if 0%{?__isa_bits} == 64
 %{__sed} -i "s|KICAD_PLUGINS lib/kicad/plugins|KICAD_PLUGINS lib64/kicad/plugins|" CMakeLists.txt
 #%{__sed} -i "s|/usr/lib/kicad|/usr/lib64/kicad|" %{SOURCE3}
 %endif
@@ -364,6 +364,9 @@ update-mime-database %{?fedora:-n} %{_datadir}/mime &> /dev/null || :
 
 
 %changelog
+* Tue Apr 14 2015 Marcin Juszkiewicz <mjuszkiewicz@redhat.com> - 2015.03.21-2.rev5528
+- Handle all 64-bit architectures
+
 * Sun Mar 22 2015 Lubomir Rintel <lkundrak@v3.sk> - 2015.03.21-1.rev5528
 - Update to a later snapshot
 - Fix the freerouter patch
