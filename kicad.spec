@@ -1,6 +1,6 @@
 Name:           kicad
 Version:        2015.03.21
-Release:        4.rev5528%{?dist}
+Release:        5.rev5528%{?dist}
 Summary:        EDA software suite for creation of schematic diagrams and PCBs
 Summary(fr):    Saisie de schéma électronique et routage de circuit imprimé
 
@@ -364,6 +364,9 @@ update-mime-database %{?fedora:-n} %{_datadir}/mime &> /dev/null || :
 
 
 %changelog
+* Wed Jul 29 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2015.03.21-5.rev5528
+- Rebuilt for https://fedoraproject.org/wiki/Changes/F23Boost159
+
 * Wed Jul 22 2015 David Tardon <dtardon@redhat.com> - 2015.03.21-4.rev5528
 - rebuild for Boost 1.58
 
