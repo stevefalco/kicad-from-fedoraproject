@@ -1,6 +1,6 @@
 Name:           kicad
 Version:        2015.08.03
-Release:        1.rev6041%{?dist}
+Release:        2.rev6041%{?dist}
 Summary:        EDA software suite for creation of schematic diagrams and PCBs
 Summary(fr):    Saisie de schéma électronique et routage de circuit imprimé
 
@@ -24,6 +24,12 @@ Source2:        %{name}-libraries-%{version}.tar.xz
 Source3:        %{name}-footprints-%{version}.tar.xz
 Source7:        Epcos-MKT-1.0.tar.bz2
 Source8:        %{name}-walter-libraries-%{version}.tar.xz
+
+# These are used to maintain the tarballs above
+Source101:      kicad-clone.sh
+Source102:      kicad-export.sh
+Source103:      kicad-update.sh
+Source104:      kicad-walter-libs.sh
 
 Patch1:         kicad-2015.01.02-nostrip.patch
 Patch2:         kicad-2015.08.03-freerouting.patch
@@ -365,8 +371,9 @@ update-mime-database %{?fedora:-n} %{_datadir}/mime &> /dev/null || :
 
 
 %changelog
-* Mon Aug 03 2015 Lubomir Rintel <lkundrak@v3.sk>
+* Mon Aug 03 2015 Lubomir Rintel <lkundrak@v3.sk> - 2015.08.03-2.rev6041
 - Set KICAD_BUILD_VERSION
+- Ship the maintainer tools with the source package
 
 * Mon Aug 03 2015 Lubomir Rintel <lkundrak@v3.sk> - 2015.08.03-1.rev6041
 - Update to a later snapshot
