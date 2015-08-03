@@ -1,31 +1,30 @@
-From f81cb9527e29c6a6ef21d9040162b42e31c40e44 Mon Sep 17 00:00:00 2001
+From dfd9fd0bf05314c566e742d19649a465dcad90a0 Mon Sep 17 00:00:00 2001
 From: Lubomir Rintel <lkundrak@v3.sk>
 Date: Wed, 24 Dec 2014 09:53:49 +0100
 Subject: [PATCH] Try to run freerouting by its JPackage launcher script
 
 It's a sin to touch the Java tool by its JAR file in Fedora.
 ---
- pcbnew/dialogs/dialog_freeroute_exchange.cpp | 24 ++++++++++++++++++++++--
- 1 file changed, 22 insertions(+), 2 deletions(-)
+ pcbnew/dialogs/dialog_freeroute_exchange.cpp | 23 ++++++++++++++++++++---
+ 1 file changed, 20 insertions(+), 3 deletions(-)
 
-diff -urp kicad-2015.01.02/pcbnew/dialogs/dialog_freeroute_exchange.cpp kicad-2015.01.02.good/pcbnew/dialogs/dialog_freeroute_exchange.cpp
---- kicad-2015.01.02/pcbnew/dialogs/dialog_freeroute_exchange.cpp	2015-01-02 22:15:35.000000000 +0100
-+++ kicad-2015.01.02.good/pcbnew/dialogs/dialog_freeroute_exchange.cpp	2015-01-03 11:25:55.393054653 +0100
-@@ -80,7 +80,12 @@ void DIALOG_FREEROUTE::MyInit()
-     wxConfigBase* cfg = Kiface().KifaceSettings();
-     cfg->Read( FREEROUTE_RUN_KEY, &msg );
- */
+diff --git a/pcbnew/dialogs/dialog_freeroute_exchange.cpp b/pcbnew/dialogs/dialog_freeroute_exchange.cpp
+index 9740f37..beb0466 100644
+--- a/pcbnew/dialogs/dialog_freeroute_exchange.cpp
++++ b/pcbnew/dialogs/dialog_freeroute_exchange.cpp
+@@ -71,7 +71,10 @@ void DIALOG_FREEROUTE::MyInit()
+     SetFocus();
+     m_freeRouterFound = false;
+ 
 -    wxFileName fileName( FindKicadFile( wxT( "freeroute.jar" ) ), wxPATH_UNIX );
 +    wxFileName fileName( FindKicadFile( wxT( "freerouting" ) ), wxPATH_UNIX );
 +
 +    if( !fileName.FileExists() )
-+    {
 +        fileName.Assign ( FindKicadFile( wxT( "freeroute.jar" ) ), wxPATH_UNIX );
-+    }
  
      if( fileName.FileExists() )
-     {
-@@ -144,8 +149,22 @@ void DIALOG_FREEROUTE::OnLaunchButtonCli
+         m_freeRouterFound = true;
+@@ -126,8 +129,22 @@ void DIALOG_FREEROUTE::OnLaunchButtonClick( wxCommandEvent& event )
              return;
      }
  
@@ -50,3 +49,6 @@ diff -urp kicad-2015.01.02/pcbnew/dialogs/dialog_freeroute_exchange.cpp kicad-20
  
      // Find the Java application on Windows.
      // Colud be no more needed since we now have to run only java, not java web start
+-- 
+2.4.3
+

@@ -1,6 +1,6 @@
 Name:           kicad
-Version:        2015.03.21
-Release:        5.rev5528%{?dist}
+Version:        2015.08.03
+Release:        1.rev6041%{?dist}
 Summary:        EDA software suite for creation of schematic diagrams and PCBs
 Summary(fr):    Saisie de schéma électronique et routage de circuit imprimé
 
@@ -26,7 +26,7 @@ Source7:        Epcos-MKT-1.0.tar.bz2
 Source8:        %{name}-walter-libraries-%{version}.tar.xz
 
 Patch1:         kicad-2015.01.02-nostrip.patch
-Patch2:         kicad-2015.01.02-freerouting.patch
+Patch2:         kicad-2015.08.03-freerouting.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  compat-wxGTK3-gtk2-devel
@@ -364,6 +364,9 @@ update-mime-database %{?fedora:-n} %{_datadir}/mime &> /dev/null || :
 
 
 %changelog
+* Mon Aug 03 2015 Lubomir Rintel <lkundrak@v3.sk> - 2015.08.03-1.rev6041
+- Update to a later snapshot
+
 * Wed Jul 29 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2015.03.21-5.rev5528
 - Rebuilt for https://fedoraproject.org/wiki/Changes/F23Boost159
 
