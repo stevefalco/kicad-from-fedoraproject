@@ -224,6 +224,7 @@ popd
 # Core components
 #
 %cmake -DKICAD_STABLE_VERSION=OFF -DKICAD_SKIP_BOOST=ON \
+        -DKICAD_BUILD_VERSION="%{version}-%{release}" \
         -DwxWidgets_CONFIG_EXECUTABLE=%{_bindir}/wx-config-3.0-gtk2
 %{__make} %{_smp_mflags} VERBOSE=1
 
@@ -364,6 +365,9 @@ update-mime-database %{?fedora:-n} %{_datadir}/mime &> /dev/null || :
 
 
 %changelog
+* Mon Aug 03 2015 Lubomir Rintel <lkundrak@v3.sk>
+- Set KICAD_BUILD_VERSION
+
 * Mon Aug 03 2015 Lubomir Rintel <lkundrak@v3.sk> - 2015.08.03-1.rev6041
 - Update to a later snapshot
 
