@@ -1,6 +1,6 @@
 Name:           kicad
 Version:        2015.08.03
-Release:        3.rev6041%{?dist}
+Release:        4.rev6041%{?dist}
 Summary:        EDA software suite for creation of schematic diagrams and PCBs
 Summary(fr):    Saisie de schéma électronique et routage de circuit imprimé
 
@@ -371,6 +371,9 @@ update-mime-database %{?fedora:-n} %{_datadir}/mime &> /dev/null || :
 
 
 %changelog
+* Thu Aug 27 2015 Jonathan Wakely <jwakely@redhat.com> - 2015.08.03-4.rev6041
+- Rebuilt for Boost 1.59
+
 * Wed Aug 05 2015 Jonathan Wakely <jwakely@redhat.com> 2015.08.03-3.rev6041
 - Rebuilt for Boost 1.58
 
