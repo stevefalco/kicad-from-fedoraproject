@@ -1,15 +1,22 @@
 #!/bin/sh
 set -e
 
-fps () { sed -n 's|.*\${KIGITHUB}/\([^)]*\)).*|\1|p' \
-	kicad-library.bzr/template/fp-lib-table.for-github \
-	kicad-library.bzr/kicad-libraries-*/template/fp-lib-table.for-github
-}
+cd kicad.bzr
+bzr update
+cd ../kicad-library
+git pull
+cd ../kicad-doc
+git pull
+cd ../kicad-i18n
+git pull
+cd ..
+
+fps () { sed -n 's|.*\${KIGITHUB}/\([^)]*\)).*|\1|p' kicad-library/template/fp-lib-table.for-github; }
 
 # Deleted footprints
 (fps; fps; ls footprints) |sort |uniq -u |while read FP
 do
-	rm -r footprints/$FP
+	echo rm -r footprints/$FP
 done
 
 # Update existing ones

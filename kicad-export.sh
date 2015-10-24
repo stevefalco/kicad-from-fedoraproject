@@ -1,30 +1,36 @@
 #!/bin/sh
 set -e
 
-TIMESTAMP="2015.02.05"
-MAIN_REV=5404
-LIB_REV=474
-DOC_REV=652
+TIMESTAMP="2015.10.24"
+MAIN_REV=6276
+LIB_REV=bd0ec6a
+DOC_REV=5787c29
+I18N_REV=72e7da0
 
 cd kicad.bzr
+rm -rf kicad-$TIMESTAMP
 bzr export -r $MAIN_REV kicad-$TIMESTAMP
 echo "Creating kicad-$TIMESTAMP.tar.xz ..."
 tar cJf kicad-$TIMESTAMP.tar.xz kicad-$TIMESTAMP
-cd ../kicad-library.bzr
-bzr export -r $LIB_REV kicad-libraries-$TIMESTAMP
-echo "Creating kicad-libraries-$TIMESTAMP.tar.xz ..."
-tar cJf kicad-libraries-$TIMESTAMP.tar.xz kicad-libraries-$TIMESTAMP
-cd ../kicad-doc.bzr
-bzr export -r $DOC_REV kicad-doc-$TIMESTAMP
+cd ../kicad-library
+echo "Creating kicad-library-$TIMESTAMP.tar.xz ..."
+git reset --hard $LIB_REV
+git archive --prefix=kicad-library-$TIMESTAMP/ HEAD |xz -9 >kicad-library-$TIMESTAMP.tar.xz
+cd ../kicad-doc
 echo "Creating kicad-doc-$TIMESTAMP.tar.xz ..."
-tar cJf kicad-doc-$TIMESTAMP.tar.xz kicad-doc-$TIMESTAMP
+git reset --hard $DOC_REV
+git archive --prefix=kicad-doc-$TIMESTAMP/ HEAD |xz -9 >kicad-doc-$TIMESTAMP.tar.xz
+cd ../kicad-i18n
+echo "Creating kicad-i18n-$TIMESTAMP.tar.xz ..."
+git reset --hard $I18N_REV
+git archive --prefix=kicad-i18n-$TIMESTAMP/ HEAD |xz -9 >kicad-i18n-$TIMESTAMP.tar.xz
 cd ../footprints
 echo "Creating kicad-footprints-$TIMESTAMP.tar.xz ..."
 rm -rf kicad-footprints-$TIMESTAMP
 mkdir -p kicad-footprints-$TIMESTAMP
 >kicad-footprints-$TIMESTAMP/VERSIONS.footprints
 sed -n 's|.*\${KIGITHUB}/\([^)]*\)).*|\1|p' \
-	../kicad-library.bzr/kicad-libraries-$TIMESTAMP/template/fp-lib-table.for-github |
+	../kicad-library/template/fp-lib-table.for-github |
 	while read FP
 	do
 		if [ -d $FP ]

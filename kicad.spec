@@ -1,6 +1,6 @@
 Name:           kicad
-Version:        2015.08.03
-Release:        4.rev6041%{?dist}
+Version:        2015.10.24
+Release:        1.rev6276%{?dist}
 Summary:        EDA software suite for creation of schematic diagrams and PCBs
 Summary(fr):    Saisie de schéma électronique et routage de circuit imprimé
 
@@ -20,8 +20,9 @@ URL:            http://www.kicad-pcb.org
 
 Source:         %{name}-%{version}.tar.xz
 Source1:        %{name}-doc-%{version}.tar.xz
-Source2:        %{name}-libraries-%{version}.tar.xz
+Source2:        %{name}-library-%{version}.tar.xz
 Source3:        %{name}-footprints-%{version}.tar.xz
+Source4:        %{name}-i18n-%{version}.tar.xz
 Source7:        Epcos-MKT-1.0.tar.bz2
 Source8:        %{name}-walter-libraries-%{version}.tar.xz
 
@@ -41,6 +42,12 @@ BuildRequires:  cmake
 BuildRequires:  doxygen
 BuildRequires:  glew-devel
 BuildRequires:  openssl-devel
+
+# Documentation
+BuildRequires:  asciidoc
+BuildRequires:  dblatex
+BuildRequires:  po4a
+BuildRequires:  perl(Unicode::GCString)
 
 Requires:       electronics-menu
 Requires:       freerouting
@@ -73,121 +80,34 @@ Group:          Documentation
 License:        GPLv2+
 BuildArch:      noarch
 
+Provides:	%{name}-doc-de = %{version}-%{release}
+Provides:	%{name}-doc-es = %{version}-%{release}
+Provides:	%{name}-doc-fr = %{version}-%{release}
+Provides:	%{name}-doc-hu = %{version}-%{release}
+Provides:	%{name}-doc-it = %{version}-%{release}
+Provides:	%{name}-doc-ja = %{version}-%{release}
+Provides:	%{name}-doc-pl = %{version}-%{release}
+Provides:	%{name}-doc-pt = %{version}-%{release}
+Provides:	%{name}-doc-ru = %{version}-%{release}
+Provides:	%{name}-doc-zh_CN = %{version}-%{release}
+
+Obsoletes:	%{name}-doc-de < %{version}-%{release}
+Obsoletes:	%{name}-doc-es < %{version}-%{release}
+Obsoletes:	%{name}-doc-fr < %{version}-%{release}
+Obsoletes:	%{name}-doc-hu < %{version}-%{release}
+Obsoletes:	%{name}-doc-it < %{version}-%{release}
+Obsoletes:	%{name}-doc-ja < %{version}-%{release}
+Obsoletes:	%{name}-doc-pl < %{version}-%{release}
+Obsoletes:	%{name}-doc-pt < %{version}-%{release}
+Obsoletes:	%{name}-doc-ru < %{version}-%{release}
+Obsoletes:	%{name}-doc-zh_CN < %{version}-%{release}
+
 %description    doc
-Documentation and tutorials for KiCad in English.
-
-
-%package        doc-de
-Summary:        Documentation for KiCad in German
-Summary(fr):    Documentations pour KiCad en allemand
-Group:          Documentation
-Requires:       %{name}-doc = %{version}-%{release}
-BuildArch:      noarch
-
-%description    doc-de
-Documentation and tutorials for KiCad in German
-
-
-%package        doc-es
-Summary:        Documentation for KiCad in Spanish
-Summary(fr):    Documentations pour KiCad en espagnol
-Group:          Documentation
-Requires:       %{name}-doc = %{version}-%{release}
-BuildArch:      noarch
-
-%description    doc-es
-Documentation and tutorials for KiCad in Spanish
-
-
-%package        doc-fr
-Summary:        Documentation for KiCad in French
-Summary(fr):    Documentations pour KiCad en français
-Group:          Documentation
-Requires:       %{name}-doc = %{version}-%{release}
-BuildArch:      noarch
-
-%description    doc-fr
-Documentation and tutorials for KiCad in French
-
-
-%package        doc-hu
-Summary:        Documentation for KiCad in Hungarian
-Summary(fr):    Documentations pour KiCad en hongrois
-Group:          Documentation
-Requires:       %{name}-doc = %{version}-%{release}
-BuildArch:      noarch
-
-%description    doc-hu
-Documentation and tutorials for KiCad in Hungarian
-
-
-%package        doc-it
-Summary:        Documentation for KiCad in Italian
-Summary(fr):    Documentations pour KiCad en italien
-Group:          Documentation
-Requires:       %{name}-doc = %{version}-%{release}
-BuildArch:      noarch
-
-%description    doc-it
-Documentation and tutorials for KiCad in Italian
-
-
-%package        doc-ja
-Summary:        Documentation for KiCad in Japanese
-Summary(fr):    Documentations pour KiCad en japonais
-Group:          Documentation
-Requires:       %{name}-doc = %{version}-%{release}
-BuildArch:      noarch
-%description    doc-ja
-Documentation and tutorials for KiCad in Japanese
-
-
-%package        doc-pl
-Summary:        Documentation for KiCad in Polish
-Summary(fr):    Documentations pour KiCad en polonais
-Group:          Documentation
-Requires:       %{name}-doc = %{version}-%{release}
-BuildArch:      noarch
-
-%description    doc-pl
-Documentation and tutorials for KiCad in Polish
-
-
-%package        doc-pt
-Summary:        Documentation for KiCad in Portuguese
-Summary(fr):    Documentations pour KiCad en portugais
-Group:          Documentation
-Requires:       %{name}-doc = %{version}-%{release}
-BuildArch:      noarch
-
-%description    doc-pt
-Documentation and tutorials for KiCad in Portuguese
-
-
-%package        doc-ru
-Summary:        Documentation for KiCad in Russian
-Summary(fr):    Documentations pour KiCad en russe
-Group:          Documentation
-Requires:       %{name}-doc = %{version}-%{release}
-BuildArch:      noarch
-
-%description    doc-ru
-Documentation and tutorials for KiCad in Russian
-
-
-%package        doc-zh_CN
-Summary:        Documentation for KiCad in Chinese
-Summary(fr):    Documentations pour KiCad en chinois
-Group:          Documentation
-Requires:       %{name}-doc = %{version}-%{release}
-BuildArch:      noarch
-
-%description    doc-zh_CN
-Documentation and tutorials for KiCad in Chinese
+Documentation for KiCad.
 
 
 %prep
-%setup -q -a 1 -a 2 -a 3 -a 7 -a 8
+%setup -q -a 1 -a 2 -a 3 -a 4 -a 7 -a 8
 
 %patch1 -p1
 %patch2 -p1
@@ -199,7 +119,6 @@ iconv -f iso8859-1 -t utf-8 AUTHORS.txt > AUTHORS.conv && mv -f AUTHORS.conv AUT
 #multilibs
 %if 0%{?__isa_bits} == 64
 %{__sed} -i "s|KICAD_PLUGINS lib/kicad/plugins|KICAD_PLUGINS lib64/kicad/plugins|" CMakeLists.txt
-#%{__sed} -i "s|/usr/lib/kicad|/usr/lib64/kicad|" %{SOURCE3}
 %endif
 
 
@@ -207,24 +126,40 @@ iconv -f iso8859-1 -t utf-8 AUTHORS.txt > AUTHORS.conv && mv -f AUTHORS.conv AUT
 
 # Add Epcos library
 cd Epcos-MKT-1.0
-cp -pR library ../%{name}-libraries-%{version}/
-cp -pR modules ../%{name}-libraries-%{version}/
+cp -pR library ../%{name}-library-%{version}/
+cp -pR modules ../%{name}-library-%{version}/
 cd ..
 
 # Add Walter libraries
 cd %{name}-walter-libraries-%{version}
-cp -pR library ../%{name}-libraries-%{version}/
-cp -pR modules ../%{name}-libraries-%{version}/
+cp -pR library ../%{name}-library-%{version}/
+cp -pR modules ../%{name}-library-%{version}/
 cd ..
 
 #
 # Symbols libraries
 #
-pushd %{name}-libraries-%{version}/
+pushd %{name}-library-%{version}/
 %cmake -DKICAD_STABLE_VERSION=OFF
 %{__make} -j1 VERBOSE=1
 popd
 
+#
+# Documentation
+#
+pushd %{name}-doc-%{version}/
+%cmake -DBUILD_FORMATS=html
+%{__make} -j1 VERBOSE=1
+popd
+
+#
+# Translations
+#
+mkdir %{name}-i18n-%{version}/build
+pushd %{name}-i18n-%{version}/build
+%cmake -DKICAD_I18N_UNIX_STRICT_PATH=ON ..
+%{__make} -j1 VERBOSE=1
+popd
 
 #
 # Core components
@@ -241,15 +176,6 @@ popd
 %{__make} INSTALL="install -p" DESTDIR=%{buildroot} install
 
 
-# install localization
-cd %{name}-doc-%{version}/internat
-for dir in bg ca cs de es fr hu it ko nl pl pt ru sl sv zh_CN
-do
-  install -m 644 -D ${dir}/%{name}.mo %{buildroot}%{_datadir}/locale/${dir}/LC_MESSAGES/%{name}.mo
-done
-cd ../..
-
-
 # install desktop
 for desktopfile in %{buildroot}%{_datadir}/applications/*.desktop ; do
   desktop-file-install \
@@ -262,7 +188,7 @@ done
 #
 # Symbols libraries
 #
-pushd %{name}-libraries-%{version}/
+pushd %{name}-library-%{version}/
 %{__make} INSTALL="install -p" DESTDIR=%{buildroot} install
 popd
 
@@ -276,13 +202,23 @@ cp -a */ %{buildroot}%{_datadir}/%{name}/modules
 popd
 ln -f %{buildroot}%{_datadir}/%{name}/template/fp-lib-table{.for-pretty,}
 
-# Preparing for documentation pull-ups
-%{__rm} -f  %{name}-doc-%{version}/doc/help/CMakeLists.txt
-%{__rm} -f  %{name}-doc-%{version}/doc/help/makefile
-%{__rm} -f  %{name}-doc-%{version}/doc/tutorials/CMakeLists.txt
+#
+# Documentation
+#
+pushd %{name}-doc-%{version}/
+%{__make} INSTALL="install -p" DESTDIR=%{buildroot} install
+popd
 
-%{__cp} -pr %{name}-doc-%{version}/doc/* %{buildroot}%{_docdir}/%{name}
-%{__cp} -pr AUTHORS.txt CHANGELOG* %{buildroot}%{_docdir}/%{name}
+#
+# Translations
+#
+rm -rf %{name}-i18n-%{version}/build
+mkdir %{name}-i18n-%{version}/build
+pushd %{name}-i18n-%{version}/build
+%cmake -DKICAD_I18N_UNIX_STRICT_PATH=ON ..
+%{__make} -j1 VERBOSE=1
+%{__make} INSTALL="install -p" DESTDIR=%{buildroot} install
+popd
 
 %find_lang %{name}
 
@@ -324,53 +260,20 @@ update-mime-database %{?fedora:-n} %{_datadir}/mime &> /dev/null || :
 
 %files doc
 %dir %{_docdir}/%{name}/
-%{_docdir}/%{name}/contrib
-#%{_docdir}/%{name}/help/
-%{_docdir}/%{name}/help/en
-%{_docdir}/%{name}/help/file_formats
-#%{_docdir}/%{name}/tutorials
-%{_docdir}/%{name}/tutorials/en
+%lang(en) %{_docdir}/%{name}/help/en
+%lang(fr) %{_docdir}/%{name}/help/fr
+%lang(it) %{_docdir}/%{name}/help/it
+%lang(ja) %{_docdir}/%{name}/help/ja
+%lang(nl) %{_docdir}/%{name}/help/nl
+%lang(pl) %{_docdir}/%{name}/help/pl
 %{_docdir}/%{name}/scripts
-
-%files doc-de
-%{_docdir}/%{name}/help/de
-%{_docdir}/%{name}/tutorials/de
-
-%files doc-es
-%{_docdir}/%{name}/help/es
-%{_docdir}/%{name}/tutorials/es
-
-%files doc-fr
-%{_docdir}/%{name}/help/fr
-%{_docdir}/%{name}/tutorials/fr
-
-%files doc-hu
-%{_docdir}/%{name}/tutorials/hu
-
-%files doc-it
-%{_docdir}/%{name}/help/it
-%{_docdir}/%{name}/tutorials/it
-
-%files doc-ja
-%{_docdir}/%{name}/help/ja
-%{_docdir}/%{name}/tutorials/ja
-
-%files doc-pl
-%{_docdir}/%{name}/help/pl
-%{_docdir}/%{name}/tutorials/pl
-
-%files doc-pt
-%{_docdir}/%{name}/help/pt
-
-%files doc-ru
-%{_docdir}/%{name}/help/ru
-%{_docdir}/%{name}/tutorials/ru
-
-%files doc-zh_CN
-%{_docdir}/%{name}/tutorials/zh_CN
 
 
 %changelog
+* Sat Oct 24 2015 Lubomir Rintel <lkundrak@v3.sk> - 2015.10.24-1.rev6276
+- Update to a later snapshot
+- Updated library, new documentation, translations
+
 * Thu Aug 27 2015 Jonathan Wakely <jwakely@redhat.com> - 2015.08.03-4.rev6041
 - Rebuilt for Boost 1.59
 
