@@ -1,6 +1,6 @@
 Name:           kicad
 Version:        4.0.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Epoch:          1
 Summary:        EDA software suite for creation of schematic diagrams and PCBs
 
@@ -182,6 +182,9 @@ make -j1 VERBOSE=1
 popd
 
 # Core components
+%if 0%{?fedora} == 23
+CXXFLAGS="-fabi-version=8 %{optflags}" \
+%endif
 %cmake -DKICAD_STABLE_VERSION=OFF -DKICAD_SKIP_BOOST=ON \
   -DKICAD_BUILD_VERSION="%{version}-%{release}" \
   -DwxWidgets_CONFIG_EXECUTABLE=%{_bindir}/wx-config-3.0-gtk2
@@ -279,10 +282,13 @@ update-mime-database %{?fedora:-n} %{_datadir}/mime &> /dev/null || :
 
 
 %changelog
-* Tue Dec 15 2015 Lubomir Rintel <lkundrak@v3.sk> - 1:4.0.1
+* Thu Dec 17 2015 Lubomir Rintel <lkundrak@v3.sk> - 1:4.0.1-2
+- Hardcode the C++ ABI version to make wxGTK happy
+
+* Tue Dec 15 2015 Lubomir Rintel <lkundrak@v3.sk> - 1:4.0.1-1
 - Update to 4.0.1
 
-* Thu Dec 03 2015 Lubomir Rintel <lkundrak@v3.sk> - 1:4.0.0
+* Thu Dec 03 2015 Lubomir Rintel <lkundrak@v3.sk> - 1:4.0.0-1
 - Update to the release
 - SPEC file cleanup:
 - Use tarballs, drop the 3rd party libraries we bundled
