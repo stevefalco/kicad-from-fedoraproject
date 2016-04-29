@@ -101,6 +101,7 @@ BuildRequires:  cmake
 BuildRequires:  doxygen
 BuildRequires:  glew-devel
 BuildRequires:  openssl-devel
+BuildRequires:  libappstream-glib
 
 # Documentation
 BuildRequires:  asciidoc
@@ -237,6 +238,10 @@ make -j1 VERBOSE=1
 make INSTALL="install -p" DESTDIR=%{buildroot} install
 popd
 %find_lang %{name}
+
+
+%check
+appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/appdata/*.appdata.xml
 
 
 %post
