@@ -53,7 +53,7 @@ index 0000000..4452714
 @@ -0,0 +1,49 @@
 +<?xml version="1.0" encoding="UTF-8"?>
 +<!-- Copyright Lubomir Rintel 2016 -->
-+<component type="addon">
++<component type="desktop">
 +  <id>kicad</id>
 +  <name>KiCad</name>
 +  <project_license>GPL-2.0+</project_license>
