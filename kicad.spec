@@ -1,6 +1,6 @@
 Name:           kicad
 Version:        4.0.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Epoch:          1
 Summary:        EDA software suite for creation of schematic diagrams and PCBs
 
@@ -91,6 +91,8 @@ Source77:       https://github.com/KiCad/Wire_Pads.pretty/archive/%{version}.tar
 
 Patch1:         kicad-4.0.0-nostrip.patch
 Patch2:         kicad-4.0.0-freerouting.patch
+# https://code.launchpad.net/~lkundrak/kicad/appstream-data/+merge/293391
+Patch3:         kicad-4.0.2-appstream.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  compat-wxGTK3-gtk2-devel
@@ -156,6 +158,7 @@ Documentation for KiCad.
 
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 sed -i "s|KICAD_PLUGINS lib/kicad/plugins|KICAD_PLUGINS %{_lib}/kicad/plugins|" CMakeLists.txt
 
@@ -263,6 +266,7 @@ update-mime-database %{?fedora:-n} %{_datadir}/mime &> /dev/null || :
 %{_libdir}/%{name}
 %{_datadir}/%{name}/
 %{_datadir}/applications/*.desktop
+%{_datadir}/appdata/*.appdata.xml
 %{_datadir}/icons/hicolor/*/mimetypes/application-x-*.*
 %{_datadir}/icons/hicolor/*/apps/*.*
 %{_datadir}/mime/packages/%{name}.xml
@@ -282,6 +286,9 @@ update-mime-database %{?fedora:-n} %{_datadir}/mime &> /dev/null || :
 
 
 %changelog
+* Wed Apr 20 2016 Lubomir Rintel <lkundrak@v3.sk> - 1:4.0.2-2
+- Add AppStream metadata
+
 * Tue Mar 01 2016 Lubomir Rintel <lkundrak@v3.sk> - 1:4.0.2-1
 - Update to 4.0.2
 
