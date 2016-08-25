@@ -1,6 +1,6 @@
 Name:           kicad
-Version:        4.0.2
-Release:        2%{?dist}
+Version:        4.0.3
+Release:        1%{?dist}
 Epoch:          1
 Summary:        EDA software suite for creation of schematic diagrams and PCBs
 
@@ -280,17 +280,24 @@ update-mime-database %{?fedora:-n} %{_datadir}/mime &> /dev/null || :
 %{_docdir}/%{name}/*.txt
 
 %files doc
-%dir %{_docdir}/%{name}/
-%lang(en) %{_docdir}/%{name}/help/en
-%lang(fr) %{_docdir}/%{name}/help/fr
-%lang(it) %{_docdir}/%{name}/help/it
-%lang(ja) %{_docdir}/%{name}/help/ja
-%lang(nl) %{_docdir}/%{name}/help/nl
-%lang(pl) %{_docdir}/%{name}/help/pl
-%{_docdir}/%{name}/scripts
+%dir %{_pkgdocdir}
+%lang(ca) %{_pkgdocdir}/help/ca
+%lang(de) %{_pkgdocdir}/help/de
+%lang(en) %{_pkgdocdir}/help/en
+%lang(es) %{_pkgdocdir}/help/es
+%lang(fr) %{_pkgdocdir}/help/fr
+%lang(it) %{_pkgdocdir}/help/it
+%lang(ja) %{_pkgdocdir}/help/ja
+%lang(nl) %{_pkgdocdir}/help/nl
+%lang(pl) %{_pkgdocdir}/help/pl
+%lang(ru) %{_pkgdocdir}/help/ru
+%{_pkgdocdir}/scripts
 
 
 %changelog
+* Thu Aug 25 2016 Lubomir Rintel <lkundrak@v3.sk> - 1:4.0.3-1
+- Update to 4.0.3
+
 * Wed Apr 20 2016 Lubomir Rintel <lkundrak@v3.sk> - 1:4.0.2-2
 - Add AppStream metadata
 
