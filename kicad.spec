@@ -168,7 +168,7 @@ sed -i "s|KICAD_PLUGINS lib/kicad/plugins|KICAD_PLUGINS %{_lib}/kicad/plugins|" 
 
 # Symbols libraries
 pushd %{name}-library-%{version}/
-%cmake -DKICAD_STABLE_VERSION=OFF
+%cmake
 make -j1 VERBOSE=1
 popd
 
@@ -186,11 +186,7 @@ make -j1 VERBOSE=1
 popd
 
 # Core components
-%if 0%{?fedora} == 23
-CXXFLAGS="-fabi-version=8 %{optflags}" \
-%endif
-%cmake -DKICAD_STABLE_VERSION=OFF -DKICAD_SKIP_BOOST=ON \
-  -DKICAD_BUILD_VERSION="%{version}-%{release}" \
+%cmake -DKICAD_SKIP_BOOST=ON -DKICAD_BUILD_VERSION="%{version}-%{release}" \
   -DwxWidgets_CONFIG_EXECUTABLE=%{_bindir}/wx-config-3.0-gtk2
 make %{_smp_mflags} VERBOSE=1
 
