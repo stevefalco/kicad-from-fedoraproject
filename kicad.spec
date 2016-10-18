@@ -1,5 +1,5 @@
 Name:           kicad
-Version:        4.0.3
+Version:        4.0.4
 Release:        1%{?dist}
 Epoch:          1
 Summary:        EDA software suite for creation of schematic diagrams and PCBs
@@ -295,6 +295,9 @@ update-mime-database %{?fedora:-n} %{_datadir}/mime &> /dev/null || :
 
 
 %changelog
+* Tue Oct 18 2016 Lubomir Rintel <lkundrak@v3.sk> - 1:4.0.4-1
+- Update to 4.0.4
+
 * Thu Aug 25 2016 Lubomir Rintel <lkundrak@v3.sk> - 1:4.0.3-1
 - Update to 4.0.3
 
