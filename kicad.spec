@@ -100,7 +100,7 @@ BuildRequires:  boost-devel
 BuildRequires:  cmake
 BuildRequires:  doxygen
 BuildRequires:  glew-devel
-BuildRequires:  openssl-devel
+BuildRequires:  pkgconfig(openssl) < 1.1.0
 BuildRequires:  libappstream-glib
 
 # Documentation
