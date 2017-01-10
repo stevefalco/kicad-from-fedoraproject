@@ -1,6 +1,6 @@
 Name:           kicad
 Version:        4.0.4
-Release:        1%{?dist}
+Release:        2%{?dist}
 Epoch:          1
 Summary:        EDA software suite for creation of schematic diagrams and PCBs
 
@@ -291,6 +291,9 @@ update-mime-database %{?fedora:-n} %{_datadir}/mime &> /dev/null || :
 
 
 %changelog
+* Tue Jan 10 2017 Orion Poplawski <orion@cora.nwra.com> - 1:4.0.4-2
+- Rebuild for glew 2.0.0
+
 * Tue Oct 18 2016 Lubomir Rintel <lkundrak@v3.sk> - 1:4.0.4-1
 - Update to 4.0.4
 
