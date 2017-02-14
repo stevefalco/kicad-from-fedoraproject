@@ -1,6 +1,6 @@
 Name:           kicad
 Version:        4.0.5
-Release:        1%{?dist}
+Release:        2%{?dist}
 Epoch:          1
 Summary:        EDA software suite for creation of schematic diagrams and PCBs
 
@@ -93,6 +93,7 @@ Patch1:         kicad-4.0.0-nostrip.patch
 Patch2:         kicad-4.0.0-freerouting.patch
 # https://code.launchpad.net/~lkundrak/kicad/appstream-data/+merge/293391
 Patch3:         kicad-4.0.2-appstream.patch
+Patch4:         kicad-4.0.5-boost.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  compat-wxGTK3-gtk2-devel
@@ -160,6 +161,7 @@ Documentation for KiCad.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 sed -i "s|KICAD_PLUGINS lib/kicad/plugins|KICAD_PLUGINS %{_lib}/kicad/plugins|" CMakeLists.txt
 
@@ -291,6 +293,9 @@ update-mime-database %{?fedora:-n} %{_datadir}/mime &> /dev/null || :
 
 
 %changelog
+* Tue Feb 14 2017 Lubomir Rintel <lkundrak@v3.sk> - 1:4.0.5-2
+- Fix build with newer boost
+
 * Tue Feb 14 2017 Lubomir Rintel <lkundrak@v3.sk> - 1:4.0.5-1
 - Update to 4.0.5
 
