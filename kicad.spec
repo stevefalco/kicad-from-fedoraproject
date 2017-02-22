@@ -1,6 +1,6 @@
 Name:           kicad
 Version:        4.0.5
-Release:        2%{?dist}
+Release:        3%{?dist}
 Epoch:          1
 Summary:        EDA software suite for creation of schematic diagrams and PCBs
 
@@ -13,81 +13,91 @@ Source1:        https://github.com/KiCad/kicad-doc/archive/%{version}.tar.gz#/ki
 Source2:        https://github.com/KiCad/kicad-library/archive/%{version}.tar.gz#/kicad-library-%{version}.tar.gz
 Source3:        https://github.com/KiCad/kicad-i18n/archive/%{version}.tar.gz#/kicad-i18n-%{version}.tar.gz
 
-# This needs to be aligned with kicad-library-*/template/fp-lib-table.for-pretty
+# perl -ne 'BEGIN {$s=4} /uri \$\{KIGITHUB}\/([^)]*)/ and printf "%-16shttps://github.com/KiCad/$1/archive/%{version}.tar.gz#/$1-%{version}.tar.gz\n", "Source".$s++.":"' \
+# kicad-*/kicad-library-*/template/fp-lib-table.for-github
 Source4:        https://github.com/KiCad/Air_Coils_SML_NEOSID.pretty/archive/%{version}.tar.gz#/Air_Coils_SML_NEOSID.pretty-%{version}.tar.gz
 Source5:        https://github.com/KiCad/Buttons_Switches_SMD.pretty/archive/%{version}.tar.gz#/Buttons_Switches_SMD.pretty-%{version}.tar.gz
-Source6:        https://github.com/KiCad/Buttons_Switches_ThroughHole.pretty/archive/%{version}.tar.gz#/Buttons_Switches_ThroughHole.pretty-%{version}.tar.gz
+Source6:        https://github.com/KiCad/Buttons_Switches_THT.pretty/archive/%{version}.tar.gz#/Buttons_Switches_THT.pretty-%{version}.tar.gz
 Source7:        https://github.com/KiCad/Buzzers_Beepers.pretty/archive/%{version}.tar.gz#/Buzzers_Beepers.pretty-%{version}.tar.gz
 Source8:        https://github.com/KiCad/Capacitors_SMD.pretty/archive/%{version}.tar.gz#/Capacitors_SMD.pretty-%{version}.tar.gz
 Source9:        https://github.com/KiCad/Capacitors_Tantalum_SMD.pretty/archive/%{version}.tar.gz#/Capacitors_Tantalum_SMD.pretty-%{version}.tar.gz
-Source10:       https://github.com/KiCad/Capacitors_ThroughHole.pretty/archive/%{version}.tar.gz#/Capacitors_ThroughHole.pretty-%{version}.tar.gz
+Source10:       https://github.com/KiCad/Capacitors_THT.pretty/archive/%{version}.tar.gz#/Capacitors_THT.pretty-%{version}.tar.gz
 Source11:       https://github.com/KiCad/Choke_Axial_ThroughHole.pretty/archive/%{version}.tar.gz#/Choke_Axial_ThroughHole.pretty-%{version}.tar.gz
 Source12:       https://github.com/KiCad/Choke_Common-Mode_Wurth.pretty/archive/%{version}.tar.gz#/Choke_Common-Mode_Wurth.pretty-%{version}.tar.gz
 Source13:       https://github.com/KiCad/Choke_Radial_ThroughHole.pretty/archive/%{version}.tar.gz#/Choke_Radial_ThroughHole.pretty-%{version}.tar.gz
 Source14:       https://github.com/KiCad/Choke_SMD.pretty/archive/%{version}.tar.gz#/Choke_SMD.pretty-%{version}.tar.gz
 Source15:       https://github.com/KiCad/Choke_Toroid_ThroughHole.pretty/archive/%{version}.tar.gz#/Choke_Toroid_ThroughHole.pretty-%{version}.tar.gz
-Source16:       https://github.com/KiCad/Connectors_Molex.pretty/archive/%{version}.tar.gz#/Connectors_Molex.pretty-%{version}.tar.gz
-Source17:       https://github.com/KiCad/Connect.pretty/archive/%{version}.tar.gz#/Connect.pretty-%{version}.tar.gz
-Source18:       https://github.com/KiCad/Converters_DCDC_ACDC.pretty/archive/%{version}.tar.gz#/Converters_DCDC_ACDC.pretty-%{version}.tar.gz
-Source19:       https://github.com/KiCad/Crystals.pretty/archive/%{version}.tar.gz#/Crystals.pretty-%{version}.tar.gz
-Source20:       https://github.com/KiCad/Diodes_SMD.pretty/archive/%{version}.tar.gz#/Diodes_SMD.pretty-%{version}.tar.gz
-Source21:       https://github.com/KiCad/Diodes_ThroughHole.pretty/archive/%{version}.tar.gz#/Diodes_ThroughHole.pretty-%{version}.tar.gz
-Source22:       https://github.com/KiCad/Discret.pretty/archive/%{version}.tar.gz#/Discret.pretty-%{version}.tar.gz
-Source23:       https://github.com/KiCad/Display.pretty/archive/%{version}.tar.gz#/Display.pretty-%{version}.tar.gz
-Source24:       https://github.com/KiCad/Displays_7-Segment.pretty/archive/%{version}.tar.gz#/Displays_7-Segment.pretty-%{version}.tar.gz
-Source25:       https://github.com/KiCad/Divers.pretty/archive/%{version}.tar.gz#/Divers.pretty-%{version}.tar.gz
-Source26:       https://github.com/KiCad/EuroBoard_Outline.pretty/archive/%{version}.tar.gz#/EuroBoard_Outline.pretty-%{version}.tar.gz
-Source27:       https://github.com/KiCad/Fiducials.pretty/archive/%{version}.tar.gz#/Fiducials.pretty-%{version}.tar.gz
-Source28:       https://github.com/KiCad/Filters_HF_Coils_NEOSID.pretty/archive/%{version}.tar.gz#/Filters_HF_Coils_NEOSID.pretty-%{version}.tar.gz
-Source29:       https://github.com/KiCad/Fuse_Holders_and_Fuses.pretty/archive/%{version}.tar.gz#/Fuse_Holders_and_Fuses.pretty-%{version}.tar.gz
-Source30:       https://github.com/KiCad/Hall-Effect_Transducers_LEM.pretty/archive/%{version}.tar.gz#/Hall-Effect_Transducers_LEM.pretty-%{version}.tar.gz
-Source31:       https://github.com/KiCad/Heatsinks.pretty/archive/%{version}.tar.gz#/Heatsinks.pretty-%{version}.tar.gz
-Source32:       https://github.com/KiCad/Housings_DFN_QFN.pretty/archive/%{version}.tar.gz#/Housings_DFN_QFN.pretty-%{version}.tar.gz
-Source33:       https://github.com/KiCad/Housings_DIP.pretty/archive/%{version}.tar.gz#/Housings_DIP.pretty-%{version}.tar.gz
-Source34:       https://github.com/KiCad/Housings_QFP.pretty/archive/%{version}.tar.gz#/Housings_QFP.pretty-%{version}.tar.gz
-Source35:       https://github.com/KiCad/Housings_SIP.pretty/archive/%{version}.tar.gz#/Housings_SIP.pretty-%{version}.tar.gz
-Source36:       https://github.com/KiCad/Housings_SOIC.pretty/archive/%{version}.tar.gz#/Housings_SOIC.pretty-%{version}.tar.gz
-Source37:       https://github.com/KiCad/Housings_SSOP.pretty/archive/%{version}.tar.gz#/Housings_SSOP.pretty-%{version}.tar.gz
-Source38:       https://github.com/KiCad/Inductors_NEOSID.pretty/archive/%{version}.tar.gz#/Inductors_NEOSID.pretty-%{version}.tar.gz
-Source39:       https://github.com/KiCad/Inductors.pretty/archive/%{version}.tar.gz#/Inductors.pretty-%{version}.tar.gz
-Source40:       https://github.com/KiCad/IR-DirectFETs.pretty/archive/%{version}.tar.gz#/IR-DirectFETs.pretty-%{version}.tar.gz
-Source41:       https://github.com/KiCad/Labels.pretty/archive/%{version}.tar.gz#/Labels.pretty-%{version}.tar.gz
-Source42:       https://github.com/KiCad/LEDs.pretty/archive/%{version}.tar.gz#/LEDs.pretty-%{version}.tar.gz
-Source43:       https://github.com/KiCad/Measurement_Points.pretty/archive/%{version}.tar.gz#/Measurement_Points.pretty-%{version}.tar.gz
-Source44:       https://github.com/KiCad/Measurement_Scales.pretty/archive/%{version}.tar.gz#/Measurement_Scales.pretty-%{version}.tar.gz
-Source45:       https://github.com/KiCad/Mechanical_Sockets.pretty/archive/%{version}.tar.gz#/Mechanical_Sockets.pretty-%{version}.tar.gz
-Source46:       https://github.com/KiCad/Microwave.pretty/archive/%{version}.tar.gz#/Microwave.pretty-%{version}.tar.gz
-Source47:       https://github.com/KiCad/Mounting_Holes.pretty/archive/%{version}.tar.gz#/Mounting_Holes.pretty-%{version}.tar.gz
-Source48:       https://github.com/KiCad/NF-Transformers_ETAL.pretty/archive/%{version}.tar.gz#/NF-Transformers_ETAL.pretty-%{version}.tar.gz
-Source49:       https://github.com/KiCad/Oddities.pretty/archive/%{version}.tar.gz#/Oddities.pretty-%{version}.tar.gz
-Source50:       https://github.com/KiCad/Opto-Devices.pretty/archive/%{version}.tar.gz#/Opto-Devices.pretty-%{version}.tar.gz
-Source51:       https://github.com/KiCad/Oscillators.pretty/archive/%{version}.tar.gz#/Oscillators.pretty-%{version}.tar.gz
-Source52:       https://github.com/KiCad/PFF_PSF_PSS_Leadforms.pretty/archive/%{version}.tar.gz#/PFF_PSF_PSS_Leadforms.pretty-%{version}.tar.gz
-Source53:       https://github.com/KiCad/Pin_Headers.pretty/archive/%{version}.tar.gz#/Pin_Headers.pretty-%{version}.tar.gz
-Source54:       https://github.com/KiCad/Potentiometers.pretty/archive/%{version}.tar.gz#/Potentiometers.pretty-%{version}.tar.gz
-Source55:       https://github.com/KiCad/Power_Integrations.pretty/archive/%{version}.tar.gz#/Power_Integrations.pretty-%{version}.tar.gz
-Source56:       https://github.com/KiCad/Relays_ThroughHole.pretty/archive/%{version}.tar.gz#/Relays_ThroughHole.pretty-%{version}.tar.gz
-Source57:       https://github.com/KiCad/Resistors_SMD.pretty/archive/%{version}.tar.gz#/Resistors_SMD.pretty-%{version}.tar.gz
-Source58:       https://github.com/KiCad/Resistors_ThroughHole.pretty/archive/%{version}.tar.gz#/Resistors_ThroughHole.pretty-%{version}.tar.gz
-Source59:       https://github.com/KiCad/Resistors_Universal.pretty/archive/%{version}.tar.gz#/Resistors_Universal.pretty-%{version}.tar.gz
-Source60:       https://github.com/KiCad/SMD_Packages.pretty/archive/%{version}.tar.gz#/SMD_Packages.pretty-%{version}.tar.gz
-Source61:       https://github.com/KiCad/Sockets_BNC.pretty/archive/%{version}.tar.gz#/Sockets_BNC.pretty-%{version}.tar.gz
-Source62:       https://github.com/KiCad/Sockets_Mini-Universal.pretty/archive/%{version}.tar.gz#/Sockets_Mini-Universal.pretty-%{version}.tar.gz
-Source63:       https://github.com/KiCad/Sockets_MOLEX_KK-System.pretty/archive/%{version}.tar.gz#/Sockets_MOLEX_KK-System.pretty-%{version}.tar.gz
-Source64:       https://github.com/KiCad/Sockets.pretty/archive/%{version}.tar.gz#/Sockets.pretty-%{version}.tar.gz
-Source65:       https://github.com/KiCad/Socket_Strips.pretty/archive/%{version}.tar.gz#/Socket_Strips.pretty-%{version}.tar.gz
-Source66:       https://github.com/KiCad/Sockets_WAGO734.pretty/archive/%{version}.tar.gz#/Sockets_WAGO734.pretty-%{version}.tar.gz
-Source67:       https://github.com/KiCad/Symbols.pretty/archive/%{version}.tar.gz#/Symbols.pretty-%{version}.tar.gz
-Source68:       https://github.com/KiCad/Terminal_Blocks.pretty/archive/%{version}.tar.gz#/Terminal_Blocks.pretty-%{version}.tar.gz
-Source69:       https://github.com/KiCad/TO_SOT_Packages_SMD.pretty/archive/%{version}.tar.gz#/TO_SOT_Packages_SMD.pretty-%{version}.tar.gz
-Source70:       https://github.com/KiCad/TO_SOT_Packages_THT.pretty/archive/%{version}.tar.gz#/TO_SOT_Packages_THT.pretty-%{version}.tar.gz
-Source71:       https://github.com/KiCad/Transformers_CHK.pretty/archive/%{version}.tar.gz#/Transformers_CHK.pretty-%{version}.tar.gz
-Source72:       https://github.com/KiCad/Transformers_SMPS_ThroughHole.pretty/archive/%{version}.tar.gz#/Transformers_SMPS_ThroughHole.pretty-%{version}.tar.gz
-Source73:       https://github.com/KiCad/Transistors_OldSowjetAera.pretty/archive/%{version}.tar.gz#/Transistors_OldSowjetAera.pretty-%{version}.tar.gz
-Source74:       https://github.com/KiCad/Valves.pretty/archive/%{version}.tar.gz#/Valves.pretty-%{version}.tar.gz
-Source75:       https://github.com/KiCad/Varistors.pretty/archive/%{version}.tar.gz#/Varistors.pretty-%{version}.tar.gz
-Source76:       https://github.com/KiCad/Wire_Connections_Bridges.pretty/archive/%{version}.tar.gz#/Wire_Connections_Bridges.pretty-%{version}.tar.gz
-Source77:       https://github.com/KiCad/Wire_Pads.pretty/archive/%{version}.tar.gz#/Wire_Pads.pretty-%{version}.tar.gz
+Source16:       https://github.com/KiCad/Connectors_Harwin.pretty/archive/%{version}.tar.gz#/Connectors_Harwin.pretty-%{version}.tar.gz
+Source17:       https://github.com/KiCad/Connectors_Hirose.pretty/archive/%{version}.tar.gz#/Connectors_Hirose.pretty-%{version}.tar.gz
+Source18:       https://github.com/KiCad/Connectors_JAE.pretty/archive/%{version}.tar.gz#/Connectors_JAE.pretty-%{version}.tar.gz
+Source19:       https://github.com/KiCad/Connectors_JST.pretty/archive/%{version}.tar.gz#/Connectors_JST.pretty-%{version}.tar.gz
+Source20:       https://github.com/KiCad/Connectors_Mini-Universal.pretty/archive/%{version}.tar.gz#/Connectors_Mini-Universal.pretty-%{version}.tar.gz
+Source21:       https://github.com/KiCad/Connectors_Molex.pretty/archive/%{version}.tar.gz#/Connectors_Molex.pretty-%{version}.tar.gz
+Source22:       https://github.com/KiCad/Connectors_Multicomp.pretty/archive/%{version}.tar.gz#/Connectors_Multicomp.pretty-%{version}.tar.gz
+Source23:       https://github.com/KiCad/Connectors_Phoenix.pretty/archive/%{version}.tar.gz#/Connectors_Phoenix.pretty-%{version}.tar.gz
+Source24:       https://github.com/KiCad/Connectors_Samtec.pretty/archive/%{version}.tar.gz#/Connectors_Samtec.pretty-%{version}.tar.gz
+Source25:       https://github.com/KiCad/Connectors_TE-Connectivity.pretty/archive/%{version}.tar.gz#/Connectors_TE-Connectivity.pretty-%{version}.tar.gz
+Source26:       https://github.com/KiCad/Connectors_Terminal_Blocks.pretty/archive/%{version}.tar.gz#/Connectors_Terminal_Blocks.pretty-%{version}.tar.gz
+Source27:       https://github.com/KiCad/Connectors_WAGO.pretty/archive/%{version}.tar.gz#/Connectors_WAGO.pretty-%{version}.tar.gz
+Source28:       https://github.com/KiCad/Connectors.pretty/archive/%{version}.tar.gz#/Connectors.pretty-%{version}.tar.gz
+Source29:       https://github.com/KiCad/Converters_DCDC_ACDC.pretty/archive/%{version}.tar.gz#/Converters_DCDC_ACDC.pretty-%{version}.tar.gz
+Source30:       https://github.com/KiCad/Crystals.pretty/archive/%{version}.tar.gz#/Crystals.pretty-%{version}.tar.gz
+Source31:       https://github.com/KiCad/Diodes_SMD.pretty/archive/%{version}.tar.gz#/Diodes_SMD.pretty-%{version}.tar.gz
+Source32:       https://github.com/KiCad/Diodes_THT.pretty/archive/%{version}.tar.gz#/Diodes_THT.pretty-%{version}.tar.gz
+Source33:       https://github.com/KiCad/Discret.pretty/archive/%{version}.tar.gz#/Discret.pretty-%{version}.tar.gz
+Source34:       https://github.com/KiCad/Displays_7-Segment.pretty/archive/%{version}.tar.gz#/Displays_7-Segment.pretty-%{version}.tar.gz
+Source35:       https://github.com/KiCad/Displays.pretty/archive/%{version}.tar.gz#/Displays.pretty-%{version}.tar.gz
+Source36:       https://github.com/KiCad/Divers.pretty/archive/%{version}.tar.gz#/Divers.pretty-%{version}.tar.gz
+Source37:       https://github.com/KiCad/EuroBoard_Outline.pretty/archive/%{version}.tar.gz#/EuroBoard_Outline.pretty-%{version}.tar.gz
+Source38:       https://github.com/KiCad/Fiducials.pretty/archive/%{version}.tar.gz#/Fiducials.pretty-%{version}.tar.gz
+Source39:       https://github.com/KiCad/Filters_HF_Coils_NEOSID.pretty/archive/%{version}.tar.gz#/Filters_HF_Coils_NEOSID.pretty-%{version}.tar.gz
+Source40:       https://github.com/KiCad/Fuse_Holders_and_Fuses.pretty/archive/%{version}.tar.gz#/Fuse_Holders_and_Fuses.pretty-%{version}.tar.gz
+Source41:       https://github.com/KiCad/Hall-Effect_Transducers_LEM.pretty/archive/%{version}.tar.gz#/Hall-Effect_Transducers_LEM.pretty-%{version}.tar.gz
+Source42:       https://github.com/KiCad/Heatsinks.pretty/archive/%{version}.tar.gz#/Heatsinks.pretty-%{version}.tar.gz
+Source43:       https://github.com/KiCad/Housings_DFN_QFN.pretty/archive/%{version}.tar.gz#/Housings_DFN_QFN.pretty-%{version}.tar.gz
+Source44:       https://github.com/KiCad/Housings_DIP.pretty/archive/%{version}.tar.gz#/Housings_DIP.pretty-%{version}.tar.gz
+Source45:       https://github.com/KiCad/Housings_QFP.pretty/archive/%{version}.tar.gz#/Housings_QFP.pretty-%{version}.tar.gz
+Source46:       https://github.com/KiCad/Housings_SIP.pretty/archive/%{version}.tar.gz#/Housings_SIP.pretty-%{version}.tar.gz
+Source47:       https://github.com/KiCad/Housings_SOIC.pretty/archive/%{version}.tar.gz#/Housings_SOIC.pretty-%{version}.tar.gz
+Source48:       https://github.com/KiCad/Housings_SSOP.pretty/archive/%{version}.tar.gz#/Housings_SSOP.pretty-%{version}.tar.gz
+Source49:       https://github.com/KiCad/Inductors_NEOSID.pretty/archive/%{version}.tar.gz#/Inductors_NEOSID.pretty-%{version}.tar.gz
+Source50:       https://github.com/KiCad/Inductors.pretty/archive/%{version}.tar.gz#/Inductors.pretty-%{version}.tar.gz
+Source51:       https://github.com/KiCad/IR-DirectFETs.pretty/archive/%{version}.tar.gz#/IR-DirectFETs.pretty-%{version}.tar.gz
+Source52:       https://github.com/KiCad/Labels.pretty/archive/%{version}.tar.gz#/Labels.pretty-%{version}.tar.gz
+Source53:       https://github.com/KiCad/LEDs.pretty/archive/%{version}.tar.gz#/LEDs.pretty-%{version}.tar.gz
+Source54:       https://github.com/KiCad/Measurement_Points.pretty/archive/%{version}.tar.gz#/Measurement_Points.pretty-%{version}.tar.gz
+Source55:       https://github.com/KiCad/Measurement_Scales.pretty/archive/%{version}.tar.gz#/Measurement_Scales.pretty-%{version}.tar.gz
+Source56:       https://github.com/KiCad/Mechanical_Sockets.pretty/archive/%{version}.tar.gz#/Mechanical_Sockets.pretty-%{version}.tar.gz
+Source57:       https://github.com/KiCad/Microwave.pretty/archive/%{version}.tar.gz#/Microwave.pretty-%{version}.tar.gz
+Source58:       https://github.com/KiCad/Mounting_Holes.pretty/archive/%{version}.tar.gz#/Mounting_Holes.pretty-%{version}.tar.gz
+Source59:       https://github.com/KiCad/NF-Transformers_ETAL.pretty/archive/%{version}.tar.gz#/NF-Transformers_ETAL.pretty-%{version}.tar.gz
+Source60:       https://github.com/KiCad/Oddities.pretty/archive/%{version}.tar.gz#/Oddities.pretty-%{version}.tar.gz
+Source61:       https://github.com/KiCad/Opto-Devices.pretty/archive/%{version}.tar.gz#/Opto-Devices.pretty-%{version}.tar.gz
+Source62:       https://github.com/KiCad/Oscillators.pretty/archive/%{version}.tar.gz#/Oscillators.pretty-%{version}.tar.gz
+Source63:       https://github.com/KiCad/PFF_PSF_PSS_Leadforms.pretty/archive/%{version}.tar.gz#/PFF_PSF_PSS_Leadforms.pretty-%{version}.tar.gz
+Source64:       https://github.com/KiCad/Pin_Headers.pretty/archive/%{version}.tar.gz#/Pin_Headers.pretty-%{version}.tar.gz
+Source65:       https://github.com/KiCad/Potentiometers.pretty/archive/%{version}.tar.gz#/Potentiometers.pretty-%{version}.tar.gz
+Source66:       https://github.com/KiCad/Power_Integrations.pretty/archive/%{version}.tar.gz#/Power_Integrations.pretty-%{version}.tar.gz
+Source67:       https://github.com/KiCad/Relays_THT.pretty/archive/%{version}.tar.gz#/Relays_THT.pretty-%{version}.tar.gz
+Source68:       https://github.com/KiCad/Resistors_SMD.pretty/archive/%{version}.tar.gz#/Resistors_SMD.pretty-%{version}.tar.gz
+Source69:       https://github.com/KiCad/Resistors_THT.pretty/archive/%{version}.tar.gz#/Resistors_THT.pretty-%{version}.tar.gz
+Source70:       https://github.com/KiCad/Resistors_Universal.pretty/archive/%{version}.tar.gz#/Resistors_Universal.pretty-%{version}.tar.gz
+Source71:       https://github.com/KiCad/RF_Modules.pretty/archive/%{version}.tar.gz#/RF_Modules.pretty-%{version}.tar.gz
+Source72:       https://github.com/KiCad/Shielding_Cabinets.pretty/archive/%{version}.tar.gz#/Shielding_Cabinets.pretty-%{version}.tar.gz
+Source73:       https://github.com/KiCad/SMD_Packages.pretty/archive/%{version}.tar.gz#/SMD_Packages.pretty-%{version}.tar.gz
+Source74:       https://github.com/KiCad/Sockets_MOLEX_KK-System.pretty/archive/%{version}.tar.gz#/Sockets_MOLEX_KK-System.pretty-%{version}.tar.gz
+Source75:       https://github.com/KiCad/Socket_Strips.pretty/archive/%{version}.tar.gz#/Socket_Strips.pretty-%{version}.tar.gz
+Source76:       https://github.com/KiCad/Sockets.pretty/archive/%{version}.tar.gz#/Sockets.pretty-%{version}.tar.gz
+Source77:       https://github.com/KiCad/Symbols.pretty/archive/%{version}.tar.gz#/Symbols.pretty-%{version}.tar.gz
+Source78:       https://github.com/KiCad/TO_SOT_Packages_SMD.pretty/archive/%{version}.tar.gz#/TO_SOT_Packages_SMD.pretty-%{version}.tar.gz
+Source79:       https://github.com/KiCad/TO_SOT_Packages_THT.pretty/archive/%{version}.tar.gz#/TO_SOT_Packages_THT.pretty-%{version}.tar.gz
+Source80:       https://github.com/KiCad/Transformers_CHK.pretty/archive/%{version}.tar.gz#/Transformers_CHK.pretty-%{version}.tar.gz
+Source81:       https://github.com/KiCad/Transformers_SMPS_ThroughHole.pretty/archive/%{version}.tar.gz#/Transformers_SMPS_ThroughHole.pretty-%{version}.tar.gz
+Source82:       https://github.com/KiCad/Transistors_OldSowjetAera.pretty/archive/%{version}.tar.gz#/Transistors_OldSowjetAera.pretty-%{version}.tar.gz
+Source83:       https://github.com/KiCad/Valves.pretty/archive/%{version}.tar.gz#/Valves.pretty-%{version}.tar.gz
+Source84:       https://github.com/KiCad/Varistors.pretty/archive/%{version}.tar.gz#/Varistors.pretty-%{version}.tar.gz
+Source85:       https://github.com/KiCad/Wire_Connections_Bridges.pretty/archive/%{version}.tar.gz#/Wire_Connections_Bridges.pretty-%{version}.tar.gz
+Source86:       https://github.com/KiCad/Wire_Pads.pretty/archive/%{version}.tar.gz#/Wire_Pads.pretty-%{version}.tar.gz
 
 Patch1:         kicad-4.0.0-nostrip.patch
 Patch2:         kicad-4.0.0-freerouting.patch
@@ -241,6 +251,11 @@ popd
 %check
 appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/appdata/*.appdata.xml
 
+# Ensure all known footprint libraries are present
+for P in $(sed -n 's|.*uri \${KISYSMOD}/\([^)]*\).*|\1|p' %{buildroot}%{_datadir}/%{name}/template/fp-lib-table); do
+  [ -d %{buildroot}%{_datadir}/%{name}/modules/$P ] || exit 1
+done
+
 
 %post
 touch --no-create %{_datadir}/icons/hicolor || :
@@ -293,6 +308,9 @@ update-mime-database %{?fedora:-n} %{_datadir}/mime &> /dev/null || :
 
 
 %changelog
+* Wed Feb 22 2017 Lubomir Rintel <lkundrak@v3.sk> - 1:4.0.5-3
+- Add missing footprint libraries
+
 * Tue Feb 14 2017 Lubomir Rintel <lkundrak@v3.sk> - 1:4.0.5-2
 - Fix build with newer boost
 
