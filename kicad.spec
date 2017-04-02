@@ -257,6 +257,10 @@ make -j1 VERBOSE=1
 make INSTALL="install -p" DESTDIR=%{buildroot} install
 popd
 %find_lang %{name}
+for F in %{buildroot}%{_pkgdocdir}/help/*/; do
+   L=$(basename $F)
+   echo "%%lang($L) %{_pkgdocdir}/help/$L" >help.lang
+done
 
 
 %check
@@ -303,18 +307,8 @@ update-mime-database %{?fedora:-n} %{_datadir}/mime &> /dev/null || :
 %dir %{_docdir}/%{name}/
 %{_docdir}/%{name}/*.txt
 
-%files doc
+%files doc -f help.lang
 %dir %{_pkgdocdir}
-%lang(ca) %{_pkgdocdir}/help/ca
-%lang(de) %{_pkgdocdir}/help/de
-%lang(en) %{_pkgdocdir}/help/en
-%lang(es) %{_pkgdocdir}/help/es
-%lang(fr) %{_pkgdocdir}/help/fr
-%lang(it) %{_pkgdocdir}/help/it
-%lang(ja) %{_pkgdocdir}/help/ja
-%lang(nl) %{_pkgdocdir}/help/nl
-%lang(pl) %{_pkgdocdir}/help/pl
-%lang(ru) %{_pkgdocdir}/help/ru
 %{_pkgdocdir}/scripts
 
 
