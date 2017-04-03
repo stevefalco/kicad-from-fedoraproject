@@ -259,7 +259,7 @@ popd
 %find_lang %{name}
 for F in %{buildroot}%{_pkgdocdir}/help/*/; do
    L=$(basename $F)
-   echo "%%lang($L) %{_pkgdocdir}/help/$L" >help.lang
+   echo "%%lang($L) %{_pkgdocdir}/help/$L" >>help.lang
 done
 
 
