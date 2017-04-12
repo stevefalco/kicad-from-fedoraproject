@@ -131,7 +131,6 @@ BuildRequires:  dblatex
 BuildRequires:  po4a
 BuildRequires:  perl(Unicode::GCString)
 
-Requires:       electronics-menu
 Requires:       freerouting
 
 %description
