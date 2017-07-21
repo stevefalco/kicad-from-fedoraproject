@@ -115,6 +115,9 @@ Patch2:         kicad-4.0.0-freerouting.patch
 Patch3:         kicad-4.0.2-appstream.patch
 Patch4:         kicad-4.0.5-boost.patch
 
+# boost-context is only available on the following architectures:
+ExclusiveArch:  %{ix86} x86_64 %{arm} ppc64 ppc64le aarch64
+
 BuildRequires:  desktop-file-utils
 BuildRequires:  compat-wxGTK3-gtk2-devel
 BuildRequires:  boost-devel
