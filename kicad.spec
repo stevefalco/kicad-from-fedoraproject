@@ -1,6 +1,6 @@
 Name:           kicad
 Version:        4.0.6
-Release:        3%{?dist}
+Release:        4%{?dist}
 Epoch:          1
 Summary:        EDA software suite for creation of schematic diagrams and PCBs
 
@@ -315,6 +315,9 @@ update-mime-database %{?fedora:-n} %{_datadir}/mime &> /dev/null || :
 
 
 %changelog
+* Wed Jul 26 2017 Fedora Release Engineering <releng@fedoraproject.org> - 1:4.0.6-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
+
 * Fri Jul 21 2017 Kalev Lember <klember@redhat.com> - 1:4.0.6-3
 - Rebuilt for Boost 1.64
 
