@@ -1,6 +1,6 @@
 Name:           kicad
 Version:        4.0.7
-Release:        1%{?dist}
+Release:        2%{?dist}
 Epoch:          1
 Summary:        EDA software suite for creation of schematic diagrams and PCBs
 
@@ -204,8 +204,13 @@ make -j1 VERBOSE=1
 popd
 
 # Core components
+%if 0%{?fedora} > 27
+%global wx_config wx-config
+%else
+%global wx_config wx-config-3.0-gtk2
+%endif
 %cmake -DKICAD_SKIP_BOOST=ON -DKICAD_BUILD_VERSION="%{version}-%{release}" \
-  -DwxWidgets_CONFIG_EXECUTABLE=%{_bindir}/wx-config-3.0-gtk2
+  -DwxWidgets_CONFIG_EXECUTABLE=%{_bindir}/%{wx_config}
 make %{_smp_mflags} VERBOSE=1
 
 
@@ -308,6 +313,9 @@ update-mime-database %{?fedora:-n} %{_datadir}/mime &> /dev/null || :
 
 
 %changelog
+* Wed Oct 04 2017 Scott Talbert <swt@techie.net> - 1:4.0.7-2
+- Update to build against merged compat-wxGTK3-gtk2-devel package
+
 * Wed Sep 27 2017 Lubomir Rintel <lkundrak@v3.sk> - 1:4.0.7-1
 - Update to 4.0.7
 
